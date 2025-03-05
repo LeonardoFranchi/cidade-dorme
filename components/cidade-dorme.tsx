@@ -28,7 +28,7 @@ type Role = "assassino" | "detetive" | "anjo" | "cidadao" | null
 interface Player {
   id: string
   name: string
-  role?: Role
+  role: Role
   alive?: boolean
   isHost?: boolean
 }
@@ -67,7 +67,7 @@ export default function CidadeDorme() {
     null,
   )
   const [showGameRules, setShowGameRules] = useState<boolean>(false)
-  const [serverAddress, setServerAddress] = useState<string>("http://localhost:3001")
+  const [serverAddress, setServerAddress] = useState<string>("https://cidade-dorme-server.onrender.com/")
   const [isServerConnected, setIsServerConnected] = useState<boolean>(false)
   const [voteCount, setVoteCount] = useState<Record<string, number>>({})
   const [myVote, setMyVote] = useState<string | null>(null)
@@ -475,13 +475,11 @@ export default function CidadeDorme() {
             <Input
               id="server-address"
               value={serverAddress}
+              disabled
               onChange={(e) => setServerAddress(e.target.value)}
-              placeholder="http://localhost:3001"
+              placeholder="https://cidade-dorme-server.onrender.com/"
               className="bg-slate-800 text-white border-slate-700"
             />
-            <p className="text-sm text-slate-400 mt-1">
-              Insira o endereço IP do host seguido da porta (ex: http://192.168.0.1:3001)
-            </p>
           </div>
 
           {errorMessage && (
@@ -579,7 +577,7 @@ export default function CidadeDorme() {
                 <Button
                   variant="outline"
                   onClick={copyRoomId}
-                  className="text-white border-slate-600 hover:bg-slate-700"
+                  className="border-slate-600 hover:bg-slate-700 text-orange-500 hover:text-orange-400"
                 >
                   <Copy className="h-4 w-4 mr-2" /> Copiar ID
                 </Button>
@@ -633,7 +631,7 @@ export default function CidadeDorme() {
         <Button
           variant="outline"
           onClick={() => setShowGameRules(true)}
-          className="w-full text-white border-slate-600 hover:bg-slate-700"
+          className="w-full text-orange-500 border-slate-600 hover:bg-slate-700 hover:text-orange-400"
         >
           Regras do Jogo
         </Button>
