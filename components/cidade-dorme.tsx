@@ -523,6 +523,7 @@ export default function CidadeDorme() {
                   Seu Nome
                 </Label>
                 <Input
+                  maxLength={42}
                   id="username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
